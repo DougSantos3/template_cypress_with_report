@@ -30,16 +30,11 @@ const baseUrls = getBaseUrls()
 
 module.exports = defineConfig({
   e2e: {
+    pageLoadTimeout: 120000,
+    defaultCommandTimeout: 120000,
     setupNodeEvents(on, config) {
-      let browserName = null
-
-      on('before:browser:launch', (browser = {}, launchOptions) => {
-        browserName = browser.name || 'electron'
-        return launchOptions
-      })
-
-      const isApiTest = config.baseUrl === baseUrls.api
-
+      const isApiTest = config.baseUrl === baseUrls.api;
+    
       allureCypress(on, config, {
         environmentInfo: {
           os_platform: os.platform(),
@@ -47,9 +42,9 @@ module.exports = defineConfig({
           os_version: os.version(),
           node_version: process.version,
           environment: env,
-          browser: isApiTest ? undefined : removeUrlSuffix(browserName),
+          browser: isApiTest ? undefined : removeUrlSuffix(config.browser || 'electron'),
         },
-      })
+      });
 
       on('task', {
         dbQuery: (query) => cyPostgres(query.query, query.connection),
@@ -61,7 +56,7 @@ module.exports = defineConfig({
     env: {
       baseUrlFront: baseUrls.ui,
     },
-    video: true,
+    video: false,
     retries: {
       runMode: 0,
       openMode: 0,

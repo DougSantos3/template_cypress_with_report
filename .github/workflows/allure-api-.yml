@@ -1,0 +1,36 @@
+name: Run API with Allure
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cypress-api-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.18.0
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run API tests with Allure
+        run: npm run test:api-allure
+
+      - name: Generate Allure report
+        run: npm run allure:generate
+
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report-api
+          path: allure-report

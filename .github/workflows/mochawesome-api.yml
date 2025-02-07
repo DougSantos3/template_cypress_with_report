@@ -1,0 +1,39 @@
+name: Run Cypress API Tests with Mochawesome
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cypress-api-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.18.0
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run API tests with Mochawesome
+        run: npm run test:api-mochawesome
+
+      - name: Merge Mochawesome JSON Reports
+        run: npm run mochawesome:merge
+
+      - name: Generate Mochawesome HTML Report
+        run: npm run mochawesome:generate
+
+      - name: Upload Mochawesome Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome-report-api
+          path: mochawesome-report
