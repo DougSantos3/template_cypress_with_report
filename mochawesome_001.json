@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-02-11T00:22:44.909Z",
+    "end": "2025-02-11T00:22:45.273Z",
+    "duration": 364,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ced0fad1-ec00-4fd8-91d0-ce9c3e70f09a",
+      "title": "",
+      "fullFile": "cypress/e2e/api/tests/register_carts.spec.cy.js",
+      "file": "cypress/e2e/api/tests/register_carts.spec.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7b90a72f-5005-4026-921b-af219216dba6",
+          "title": "Testing user creation flow, login, create cart",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Create cart",
+              "fullTitle": "Testing user creation flow, login, create cart Create cart",
+              "timedOut": null,
+              "duration": 302,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.generateRandomEmailAndPassword().then(userData => {\n  const email = userData.email;\n  const password = userData.password;\n  let authorization;\n  let productId;\n  let cardId;\n  (0, _create_user.createUserRequest)(email, password).then(() => (0, _login.loginRequest)(email, password)).then(() => cy.get('@authorization')).then(auth => {\n    authorization = auth;\n    return cy.generateRandomProduct();\n  }).then(productData => {\n    return (0, _create_product.createProductRequest)(authorization, productData.nome, productData.preco, productData.descricao, productData.quantidade);\n  }).then(() => cy.get('@productId')).then(prodId => {\n    productId = prodId;\n    return (0, _create_card.createCardRequest)(authorization, productId);\n  }).then(() => cy.get('@cardId')).then(cartId => {\n    cardId = cartId;\n    return (0, _seach_card.getCartRequest)(cardId);\n  }).then(response => {\n    expect(response.status).to.eq(200);\n    expect(response.body).to.have.property('_id', cardId);\n    expect(response.body.produtos[0].idProduto).to.eq(productId);\n  });\n});",
+              "err": {},
+              "uuid": "371f38a4-afd6-4aa3-9bee-da5019d4c11f",
+              "parentUUID": "7b90a72f-5005-4026-921b-af219216dba6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "371f38a4-afd6-4aa3-9bee-da5019d4c11f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 302,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "mochawesome-report",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

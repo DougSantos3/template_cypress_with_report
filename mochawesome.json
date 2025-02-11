@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-02-11T00:22:41.852Z",
+    "end": "2025-02-11T00:22:42.233Z",
+    "duration": 381,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "391628a2-d566-4e6a-b921-87c23f29ad33",
+      "title": "",
+      "fullFile": "cypress/e2e/api/tests/alter_email.spec.cy.js",
+      "file": "cypress/e2e/api/tests/alter_email.spec.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a7813c12-46d3-4fd2-81aa-cff5ee2edfb7",
+          "title": "Testing user creation flow, login, email change",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Change email",
+              "fullTitle": "Testing user creation flow, login, email change Change email",
+              "timedOut": null,
+              "duration": 276,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.generateRandomEmailAndPassword().then(userData => {\n  const email = userData.email;\n  const password = userData.password;\n  let userId;\n  let authorization;\n  (0, _create_user.createUserRequest)(email, password).then(() => cy.get('@userId')).then(id => {\n    userId = id;\n    return (0, _login.loginRequest)(email, password);\n  }).then(() => cy.get('@authorization')).then(auth => {\n    authorization = auth;\n    const newEmail = `new_${email}`;\n    return (0, _alter_user.updateUserEmailRequest)(authorization, userId, newEmail, password);\n  }).then(() => {\n    return (0, _search_user.searchProduct)(userId);\n  }).then(response => {\n    expect(response.status).to.eq(200);\n    expect(response.body.email).to.eq(`new_${email}`);\n  });\n});",
+              "err": {},
+              "uuid": "f5b47998-0dbc-4236-b44e-39af1abb0699",
+              "parentUUID": "a7813c12-46d3-4fd2-81aa-cff5ee2edfb7",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f5b47998-0dbc-4236-b44e-39af1abb0699"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 276,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "mochawesome-report",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

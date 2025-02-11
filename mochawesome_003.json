@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-02-11T00:22:51.458Z",
+    "end": "2025-02-11T00:22:51.587Z",
+    "duration": 129,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "1dcf84d3-1533-4fa8-b853-2660be4a06c2",
+      "title": "",
+      "fullFile": "cypress/e2e/api/tests/seach_all_users.cy.js",
+      "file": "cypress/e2e/api/tests/seach_all_users.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "decc119a-07a2-4e2e-8c60-26ccde36a280",
+          "title": "Contract Test for empty user listing",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "List of users",
+              "fullTitle": "Contract Test for empty user listing List of users",
+              "timedOut": null,
+              "duration": 78,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.generateRandomEmailAndPassword().then(userData => {\n  (0, _list_all_registered_users.listAllRegisteredUsers)(userData.email, userData.password).should(response => {\n    expect(response.status).to.be.eq(200);\n    return _allUserSchema.allUserSchema.validateAsync(response.body);\n  });\n});",
+              "err": {},
+              "uuid": "99b2eabd-db6c-4676-a1b0-3ecf87697d0a",
+              "parentUUID": "decc119a-07a2-4e2e-8c60-26ccde36a280",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "99b2eabd-db6c-4676-a1b0-3ecf87697d0a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 78,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "mochawesome-report",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

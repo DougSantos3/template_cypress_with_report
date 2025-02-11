@@ -1,0 +1,337 @@
+{
+  "stats": {
+    "suites": 5,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false,
+    "start": "2025-02-11T00:22:41.852Z",
+    "end": "2025-02-11T00:22:54.384Z",
+    "duration": 12532
+  },
+  "results": [
+    {
+      "uuid": "391628a2-d566-4e6a-b921-87c23f29ad33",
+      "title": "",
+      "fullFile": "cypress/e2e/api/tests/alter_email.spec.cy.js",
+      "file": "cypress/e2e/api/tests/alter_email.spec.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a7813c12-46d3-4fd2-81aa-cff5ee2edfb7",
+          "title": "Testing user creation flow, login, email change",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Change email",
+              "fullTitle": "Testing user creation flow, login, email change Change email",
+              "timedOut": null,
+              "duration": 276,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.generateRandomEmailAndPassword().then(userData => {\n  const email = userData.email;\n  const password = userData.password;\n  let userId;\n  let authorization;\n  (0, _create_user.createUserRequest)(email, password).then(() => cy.get('@userId')).then(id => {\n    userId = id;\n    return (0, _login.loginRequest)(email, password);\n  }).then(() => cy.get('@authorization')).then(auth => {\n    authorization = auth;\n    const newEmail = `new_${email}`;\n    return (0, _alter_user.updateUserEmailRequest)(authorization, userId, newEmail, password);\n  }).then(() => {\n    return (0, _search_user.searchProduct)(userId);\n  }).then(response => {\n    expect(response.status).to.eq(200);\n    expect(response.body.email).to.eq(`new_${email}`);\n  });\n});",
+              "err": {},
+              "uuid": "f5b47998-0dbc-4236-b44e-39af1abb0699",
+              "parentUUID": "a7813c12-46d3-4fd2-81aa-cff5ee2edfb7",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f5b47998-0dbc-4236-b44e-39af1abb0699"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 276,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "ced0fad1-ec00-4fd8-91d0-ce9c3e70f09a",
+      "title": "",
+      "fullFile": "cypress/e2e/api/tests/register_carts.spec.cy.js",
+      "file": "cypress/e2e/api/tests/register_carts.spec.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7b90a72f-5005-4026-921b-af219216dba6",
+          "title": "Testing user creation flow, login, create cart",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Create cart",
+              "fullTitle": "Testing user creation flow, login, create cart Create cart",
+              "timedOut": null,
+              "duration": 302,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.generateRandomEmailAndPassword().then(userData => {\n  const email = userData.email;\n  const password = userData.password;\n  let authorization;\n  let productId;\n  let cardId;\n  (0, _create_user.createUserRequest)(email, password).then(() => (0, _login.loginRequest)(email, password)).then(() => cy.get('@authorization')).then(auth => {\n    authorization = auth;\n    return cy.generateRandomProduct();\n  }).then(productData => {\n    return (0, _create_product.createProductRequest)(authorization, productData.nome, productData.preco, productData.descricao, productData.quantidade);\n  }).then(() => cy.get('@productId')).then(prodId => {\n    productId = prodId;\n    return (0, _create_card.createCardRequest)(authorization, productId);\n  }).then(() => cy.get('@cardId')).then(cartId => {\n    cardId = cartId;\n    return (0, _seach_card.getCartRequest)(cardId);\n  }).then(response => {\n    expect(response.status).to.eq(200);\n    expect(response.body).to.have.property('_id', cardId);\n    expect(response.body.produtos[0].idProduto).to.eq(productId);\n  });\n});",
+              "err": {},
+              "uuid": "371f38a4-afd6-4aa3-9bee-da5019d4c11f",
+              "parentUUID": "7b90a72f-5005-4026-921b-af219216dba6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "371f38a4-afd6-4aa3-9bee-da5019d4c11f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 302,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "e11cfb3c-4d2c-4444-bd66-a24be5c1b9f7",
+      "title": "",
+      "fullFile": "cypress/e2e/api/tests/remove_product.spec.cy.js",
+      "file": "cypress/e2e/api/tests/remove_product.spec.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "010609fa-6ccd-4908-9e4f-8ee2d68e1993",
+          "title": "Testing user creation flow, login, delete product",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "create a product and delete it",
+              "fullTitle": "Testing user creation flow, login, delete product create a product and delete it",
+              "timedOut": null,
+              "duration": 271,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.generateRandomEmailAndPassword().then(userData => {\n  const email = userData.email;\n  const password = userData.password;\n  let authorization;\n  let productId;\n  (0, _create_user.createUserRequest)(email, password).then(() => (0, _login.loginRequest)(email, password)).then(() => cy.get('@authorization')).then(auth => {\n    authorization = auth;\n    return cy.generateRandomProduct();\n  }).then(productData => (0, _create_product.createProductRequest)(authorization, productData.nome, productData.preco, productData.descricao, productData.quantidade)).then(() => cy.get('@productId')).then(prodId => {\n    productId = prodId;\n    return (0, _search_product.searchProduct)(productId);\n  }).then(getProductResponse => (0, _delete_product.deleteProductRequest)(authorization, getProductResponse.body._id)).then(deleteProductResponse => {\n    expect(deleteProductResponse.status).to.eq(200);\n    expect(deleteProductResponse.body.message).to.eq('Registro excluído com sucesso');\n  });\n});",
+              "err": {},
+              "uuid": "70e25a76-63a5-49ac-b5a6-ef81fc69bbfa",
+              "parentUUID": "010609fa-6ccd-4908-9e4f-8ee2d68e1993",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "70e25a76-63a5-49ac-b5a6-ef81fc69bbfa"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 271,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "1dcf84d3-1533-4fa8-b853-2660be4a06c2",
+      "title": "",
+      "fullFile": "cypress/e2e/api/tests/seach_all_users.cy.js",
+      "file": "cypress/e2e/api/tests/seach_all_users.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "decc119a-07a2-4e2e-8c60-26ccde36a280",
+          "title": "Contract Test for empty user listing",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "List of users",
+              "fullTitle": "Contract Test for empty user listing List of users",
+              "timedOut": null,
+              "duration": 78,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.generateRandomEmailAndPassword().then(userData => {\n  (0, _list_all_registered_users.listAllRegisteredUsers)(userData.email, userData.password).should(response => {\n    expect(response.status).to.be.eq(200);\n    return _allUserSchema.allUserSchema.validateAsync(response.body);\n  });\n});",
+              "err": {},
+              "uuid": "99b2eabd-db6c-4676-a1b0-3ecf87697d0a",
+              "parentUUID": "decc119a-07a2-4e2e-8c60-26ccde36a280",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "99b2eabd-db6c-4676-a1b0-3ecf87697d0a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 78,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "3e5cdf11-354b-41b1-8eca-42551670b0e1",
+      "title": "",
+      "fullFile": "cypress/e2e/api/tests/seach_product.spec.cy.js",
+      "file": "cypress/e2e/api/tests/seach_product.spec.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "15fad844-c047-435f-ad9a-ae240a6731ff",
+          "title": "Testing user creation flow, login, email change and Check product",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Create a product and verify that the product was created",
+              "fullTitle": "Testing user creation flow, login, email change and Check product Create a product and verify that the product was created",
+              "timedOut": null,
+              "duration": 231,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.generateRandomEmailAndPassword().then(userData => {\n  const email = userData.email;\n  const password = userData.password;\n  let authorization;\n  let productId;\n  (0, _create_user.createUserRequest)(email, password).then(() => (0, _login.loginRequest)(email, password)).then(() => cy.get('@authorization')).then(auth => {\n    authorization = auth;\n    return cy.generateRandomProduct();\n  }).then(productData => (0, _create_product.createProductRequest)(authorization, productData.nome, productData.preco, productData.descricao, productData.quantidade)).then(() => cy.get('@productId')).then(prodId => {\n    productId = prodId;\n    return (0, _search_product.searchProduct)(productId);\n  }).then(getProductResponse => {\n    expect(getProductResponse.status).to.eq(200);\n    expect(getProductResponse.body._id).to.eq(productId);\n  });\n});",
+              "err": {},
+              "uuid": "6ed5d173-f278-4d8b-8251-ce7998d20d24",
+              "parentUUID": "15fad844-c047-435f-ad9a-ae240a6731ff",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6ed5d173-f278-4d8b-8251-ce7998d20d24"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 231,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "mochawesome-report",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-02-11T00:22:48.596Z",
+    "end": "2025-02-11T00:22:48.919Z",
+    "duration": 323,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e11cfb3c-4d2c-4444-bd66-a24be5c1b9f7",
+      "title": "",
+      "fullFile": "cypress/e2e/api/tests/remove_product.spec.cy.js",
+      "file": "cypress/e2e/api/tests/remove_product.spec.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "010609fa-6ccd-4908-9e4f-8ee2d68e1993",
+          "title": "Testing user creation flow, login, delete product",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "create a product and delete it",
+              "fullTitle": "Testing user creation flow, login, delete product create a product and delete it",
+              "timedOut": null,
+              "duration": 271,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.generateRandomEmailAndPassword().then(userData => {\n  const email = userData.email;\n  const password = userData.password;\n  let authorization;\n  let productId;\n  (0, _create_user.createUserRequest)(email, password).then(() => (0, _login.loginRequest)(email, password)).then(() => cy.get('@authorization')).then(auth => {\n    authorization = auth;\n    return cy.generateRandomProduct();\n  }).then(productData => (0, _create_product.createProductRequest)(authorization, productData.nome, productData.preco, productData.descricao, productData.quantidade)).then(() => cy.get('@productId')).then(prodId => {\n    productId = prodId;\n    return (0, _search_product.searchProduct)(productId);\n  }).then(getProductResponse => (0, _delete_product.deleteProductRequest)(authorization, getProductResponse.body._id)).then(deleteProductResponse => {\n    expect(deleteProductResponse.status).to.eq(200);\n    expect(deleteProductResponse.body.message).to.eq('Registro excluído com sucesso');\n  });\n});",
+              "err": {},
+              "uuid": "70e25a76-63a5-49ac-b5a6-ef81fc69bbfa",
+              "parentUUID": "010609fa-6ccd-4908-9e4f-8ee2d68e1993",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "70e25a76-63a5-49ac-b5a6-ef81fc69bbfa"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 271,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "mochawesome-report",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
