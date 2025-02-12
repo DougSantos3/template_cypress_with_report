@@ -33,14 +33,27 @@ Run tests:
 
 ```bash
 # Open dashboard cypress
-npm run cy:open
-
+npm run open
+```
+```bash
 # Run tests ui env qa
-npm run test:ui:qa
+npm run test:ui-allure
+# or
+npm run test:ui-mochawesome
+```
 
+```bash
 # Run tests api env qa
-npm run test:api:qa
+npm run test:api-allure
+# or
+npm run test:api-mochawesome
+```
 
+<br>
+
+# View location on Allure Report
+
+```bash
 # After run test, create report. Use this command if you need to save the report for future reference or for sharing it with colleagues. With the error image of the failed test case attached to the report
 npm run view:report
 # Or use this command if you need to view the report for yourself and do not need to save it.  With the error image of the failed test case attached to the report
@@ -53,6 +66,35 @@ npm run allure:history
 npm run allure:clear
 ```
 <br>
+
+<br>
+
+# View location on mochawesome Report
+
+```bash
+# After run test, create report. Use this command if you want to merge the json 
+npm run mochawesome:merge
+
+# After with this command you will create the html with all the reports
+npm run mochawesome:generate
+
+```
+
+
+
+# Details
+
+- A mochawesome-report folder will be generated in the project root and you must enter it, look for the merged.html file where the report with the scenarios will be, just double-click on it.
+
+- The system only has one environment where I left qa as default, but if the system has multiple environments, you just need to change the urls in cypress.config.js and call it via:
+
+  NODE_ENV=dev npm run test:ui-allure
+
+  NODE_ENV=dev npm run test:ui-mochawesome
+
+  NODE_ENV=prod npm run test:ui-allure
+  
+  NODE_ENV=prod npm run test:ui-mochawesome
 
 ## Tests Overview
 
