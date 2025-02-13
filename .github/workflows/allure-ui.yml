@@ -11,6 +11,7 @@ on:
           - chrome
           - edge
           - firefox
+          - safari-webkit
           - electron
 
 permissions:
@@ -33,8 +34,20 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install WebKit dependencies (if selected)
+        run: |
+          if [ "${{ github.event.inputs.browser }}" = "safari-webkit" ]; then
+            npx playwright install-deps webkit
+            sudo apt-get install libavif16
+          fi
+
       - name: Run UI tests
-        run: BROWSER=${{ github.event.inputs.browser }} npm run test:ui-allure
+        run: |
+          BROWSER=${{ github.event.inputs.browser }}
+          if [ "$BROWSER" = "safari-webkit" ]; then
+            BROWSER="webkit"
+          fi
+          npm run test:ui-allure --browser=$BROWSER
 
       - name: Generate Allure report
         run: npm run allure:generate
