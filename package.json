@@ -25,6 +25,7 @@
     "@shelex/cypress-allure-plugin": "^2.40.2",
     "allure-commandline": "^2.32.0",
     "allure-cypress": "^3.0.9",
+    "browserstack-cypress-cli": "^1.32.4",
     "cross-env": "^7.0.3",
     "cypress": "^14.0.2",
     "cypress-multi-reporters": "^2.0.5",
@@ -36,6 +37,7 @@
     "mochawesome-report-generator": "^6.2.0",
     "pg": "^8.13.1",
     "pg-promise": "^11.10.2",
+    "playwright-webkit": "^1.50.1",
     "prettier": "^3.4.2"
   }
 }

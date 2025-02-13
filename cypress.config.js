@@ -25,6 +25,7 @@ function getBaseUrls() {
 const baseUrls = getBaseUrls()
 
 module.exports = defineConfig({
+  experimentalWebKitSupport: true,
   e2e: {
     setupNodeEvents(on, config) {
       allureCypress(on, config, {
@@ -45,6 +46,13 @@ module.exports = defineConfig({
       return config
     },
     baseUrl: baseUrls.api,
+    browserStack: {
+      video: false,
+      project: 'Your Project Name',
+      build: 'Your Build Name',
+      timeout: 600,
+      retryWaitTime: 5000,
+    },
     env: {
       baseUrlFront: baseUrls.ui,
     },
