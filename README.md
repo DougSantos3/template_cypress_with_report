@@ -36,19 +36,13 @@ Run tests:
 npm run open
 ```
 ```bash
-# Run tests ui env qa
-npm run test:ui-allure
-# or
-npm run test:ui-mochawesome
+# Run tests ui env qa in several browser
+BROWSER=chrome npm run test:ui-allure 
+BROWSER=edge npm run test:ui-allure 
+BROWSER=firefox npm run test:ui-allure 
+BROWSER=webkit npm run test:ui-allure 
+BROWSER=electron npm run test:ui-allure
 ```
-
-```bash
-# Run tests api env qa
-npm run test:api-allure
-# or
-npm run test:api-mochawesome
-```
-
 <br>
 
 # View location on Allure Report
@@ -69,7 +63,16 @@ npm run allure:clear
 
 <br>
 
-# View location on mochawesome Report
+
+```bash
+BROWSER=chrome npm run test:ui-mochawesome
+BROWSER=edge npm run test:ui-mochawesome
+BROWSER=firefox npm run test:ui-mochawesome
+BROWSER=webkit  npm run test:ui-mochawesome
+BROWSER=electron npm run test:ui-mochawesome
+```
+
+# View location on Mochawesome Report
 
 ```bash
 # After run test, create report. Use this command if you want to merge the json 
