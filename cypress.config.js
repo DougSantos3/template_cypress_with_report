@@ -47,11 +47,11 @@ module.exports = defineConfig({
     },
     baseUrl: baseUrls.api,
     browserStack: {
-      video: false,
+      video: false, 
       project: 'Your Project Name',
       build: 'Your Build Name',
-      timeout: 600,
-      retryWaitTime: 5000,
+      timeout: 600, 
+      retryWaitTime: 5000, 
     },
     env: {
       baseUrlFront: baseUrls.ui,
