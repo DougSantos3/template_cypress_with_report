@@ -11,7 +11,7 @@ on:
           - chrome
           - edge
           - firefox
-          - safari-webkit
+          - safari(webkit)
           - electron
 
 permissions:
@@ -36,7 +36,7 @@ jobs:
 
       - name: Install WebKit dependencies (if selected)
         run: |
-          if [ "${{ github.event.inputs.browser }}" = "safari-webkit" ]; then
+          if [ "${{ github.event.inputs.browser }}" = "safari(webkit)" ]; then
             npx playwright install-deps webkit
             sudo apt-get install libavif16
           fi
@@ -44,7 +44,7 @@ jobs:
       - name: Run UI tests
         run: |
           BROWSER=${{ github.event.inputs.browser }}
-          if [ "$BROWSER" = "safari-webkit" ]; then
+          if [ "$BROWSER" = "safari(webkit)" ]; then
             BROWSER="webkit"
           fi
           npm run test:ui-allure --browser=$BROWSER
