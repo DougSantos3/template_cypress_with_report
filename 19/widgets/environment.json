@@ -1,0 +1,1 @@
+[{"values":["linux"],"name":"os_platform"},{"values":["6.8.0-1021-azure"],"name":"os_release"},{"values":["#25-Ubuntu SMP Wed Jan 15 20:45:09 UTC 2025"],"name":"os_version"},{"values":["v20.18.0"],"name":"node_version"},{"values":["qaURL=https://DougSantos3.github.io/template_cypress_with_report"],"name":"environment"}]

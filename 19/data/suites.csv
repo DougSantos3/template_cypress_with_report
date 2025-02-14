@@ -1,0 +1,7 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Feb 14 21:53:10 GMT 2025","Fri Feb 14 21:53:15 GMT 2025","4587","Testing user creation","","","","","You must create a user without administrative access",""
+"passed","Fri Feb 14 21:53:00 GMT 2025","Fri Feb 14 21:53:03 GMT 2025","2577","Products","","","","","Name is required",""
+"passed","Fri Feb 14 21:52:57 GMT 2025","Fri Feb 14 21:53:00 GMT 2025","3170","Products","","","","","You must authenticate and register a product",""
+"passed","Fri Feb 14 21:53:24 GMT 2025","Fri Feb 14 21:53:26 GMT 2025","1394","Login Page","","","","","should log in successfully and show ""Bem Vindo""",""
+"passed","Fri Feb 14 21:53:03 GMT 2025","Fri Feb 14 21:53:05 GMT 2025","2222","Products","","","","","Description cannot be blank",""
+"passed","Fri Feb 14 21:53:15 GMT 2025","Fri Feb 14 21:53:19 GMT 2025","4413","Testing user creation","","","","","You must create a user with administrative access",""
