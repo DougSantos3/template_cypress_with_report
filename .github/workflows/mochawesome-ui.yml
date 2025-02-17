@@ -41,7 +41,7 @@ jobs:
             sudo apt-get install libavif16
           fi
 
-      - name: Run API tests with Mochawesome
+      - name: Run API tests
         run: |
           BROWSER=${{ github.event.inputs.browser }}
           if [ "$BROWSER" = "safari" ]; then
@@ -60,13 +60,6 @@ jobs:
 
       - name: List files in root
         run: ls -R .
-
-      - name: Check for merged.html
-        run: |
-          if [ ! -f merged.html ]; then
-            echo "merged.html not found!"
-            exit 1
-          fi
 
       - name: Load test report history
         uses: actions/checkout@v3

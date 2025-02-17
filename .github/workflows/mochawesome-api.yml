@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run API tests with Mochawesome
+      - name: Run API tests
         run: npm run test:api-mochawesome
 
       - name: Merge Mochawesome reports
