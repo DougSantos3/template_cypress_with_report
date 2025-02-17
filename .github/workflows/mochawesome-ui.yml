@@ -11,7 +11,7 @@ on:
           - chrome
           - edge
           - firefox
-          - safari-webkit
+          - safari
           - electron
 
 permissions:
@@ -36,7 +36,7 @@ jobs:
 
       - name: Install WebKit dependencies (if selected)
         run: |
-          if [ "${{ github.event.inputs.browser }}" = "safari-webkit" ]; then
+          if [ "${{ github.event.inputs.browser }}" = "safari" ]; then
             npx playwright install-deps webkit
             sudo apt-get install libavif16
           fi
@@ -44,10 +44,10 @@ jobs:
       - name: Run API tests with Mochawesome
         run: |
           BROWSER=${{ github.event.inputs.browser }}
-          if [ "$BROWSER" = "safari-webkit" ]; then
+          if [ "$BROWSER" = "safari" ]; then
             BROWSER="webkit"
           fi
-          npm run test:api-mochawesome --browser=$BROWSER
+          BROWSER=$BROWSER npm run test:api-mochawesome
 
       - name: Merge Mochawesome reports
         run: npm run mochawesome:merge
