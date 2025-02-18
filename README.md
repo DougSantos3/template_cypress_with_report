@@ -42,6 +42,8 @@ BROWSER=edge npm run test:ui-allure
 BROWSER=firefox npm run test:ui-allure 
 BROWSER=webkit npm run test:ui-allure 
 BROWSER=electron npm run test:ui-allure
+
+npm run test:api-allure
 ```
 <br>
 
@@ -70,6 +72,8 @@ BROWSER=edge npm run test:ui-mochawesome
 BROWSER=firefox npm run test:ui-mochawesome
 BROWSER=webkit  npm run test:ui-mochawesome
 BROWSER=electron npm run test:ui-mochawesome
+
+npm run test:api-mochawesome
 ```
 
 # View location on Mochawesome Report
@@ -83,7 +87,8 @@ npm run mochawesome:generate
 
 ```
 
-
+# Run BrowserStack
+`browserstack-cypress run`
 
 # Details
 
