@@ -87,8 +87,17 @@ npm run mochawesome:generate
 
 ```
 
-# Run BrowserStack
+<br>
+
+# Browserstack
+
+### Before run Browserstack you need execute
+`node generateConfig.js`
+
+### Now you can run BrowserStack
 `browserstack-cypress run`
+
+<br>
 
 # Details
 

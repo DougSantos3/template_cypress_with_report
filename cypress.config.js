@@ -47,7 +47,6 @@ module.exports = defineConfig({
     },
     baseUrl: baseUrls.api,
     browserStack: {
-      video: false, 
       project: 'Your Project Name',
       build: 'Your Build Name',
       timeout: 600, 
