@@ -2,6 +2,7 @@ const { defineConfig } = require('cypress')
 const { allureCypress } = require('allure-cypress/reporter')
 const cyPostgres = require('cypress-postgres-10v-compatibility')
 const os = require('os')
+const browserstackTestObservabilityPlugin = require('browserstack-cypress-cli/bin/testObservability/plugin')
 
 const env = process.env.NODE_ENV || 'qa'
 
@@ -28,30 +29,28 @@ module.exports = defineConfig({
   experimentalWebKitSupport: true,
   e2e: {
     setupNodeEvents(on, config) {
-      allureCypress(on, config, {
-        environmentInfo: {
-          os_platform: os.platform(),
-          os_release: os.release(),
-          os_version: os.version(),
-          node_version: process.version,
-          environment: env,
-          browser: config.browser,
-        },
-      })
+      if (!config.env.allureInitialized) {
+        allureCypress(on, config, {
+          environmentInfo: {
+            os_platform: os.platform(),
+            os_release: os.release(),
+            os_version: os.version(),
+            node_version: process.version,
+            environment: env,
+            browser: config.browser,
+          },
+        })
+        config.env.allureInitialized = true
+      }
 
       on('task', {
         dbQuery: (query) => cyPostgres(query.query, query.connection),
       })
 
+      browserstackTestObservabilityPlugin(on, config)
       return config
     },
     baseUrl: baseUrls.api,
-    browserStack: {
-      project: 'Your Project Name',
-      build: 'Your Build Name',
-      timeout: 600, 
-      retryWaitTime: 5000, 
-    },
     env: {
       baseUrlFront: baseUrls.ui,
     },

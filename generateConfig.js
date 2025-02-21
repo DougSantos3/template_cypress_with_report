@@ -13,7 +13,10 @@ if (!username || !accessKey) {
 }
 
 const browserstackConfig = {
-  auth: { username: username, access_key: accessKey },
+  auth: {
+    username: username,
+    access_key: accessKey,
+  },
   browsers: [
     {
       os: 'OS X Big Sur',
@@ -53,15 +56,22 @@ const browserstackConfig = {
   ],
   run_settings: {
     cypress_config_file: './cypress.config.js',
-    cypress_version: '13.15.0',
+    nodeVersion: '20.16.0',
     npm_dependencies: {
-      cypress: '13.15.0',
+      cypress: '13.latest',
       'browserstack-cypress-cli': '^1.32.4',
     },
     project_name: 'Cypress in ServeRest',
     build_name: 'Build no: 1',
-    parallels: 5,
+    parallels: 1,
     exclude: ['some-folder/test.js', 'static/*.pdf'],
+  },
+  testObservability: true,
+  browserstackAutomation: true,
+  testObservabilityOptions: {
+    projectName: 'Cypress in ServeRes',
+    buildName: 'Build no: 1',
+    buildTag: ['Custom Tag 1', 'Custom Tag 2'],
   },
 }
 
