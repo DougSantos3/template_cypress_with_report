@@ -37,13 +37,13 @@ npm run open
 ```
 ```bash
 # Run tests ui env qa in several browser
-BROWSER=chrome npm run test:ui-allure 
-BROWSER=edge npm run test:ui-allure 
-BROWSER=firefox npm run test:ui-allure 
-BROWSER=webkit npm run test:ui-allure 
+BROWSER=chrome NODE_ENV=qa npm run test:ui-allure NODE_ENV=qa
+BROWSER=edge NODE_ENV=qa npm run test:ui-allure 
+BROWSER=firefox NODE_ENV=qa npm run test:ui-allure 
+BROWSER=webkit NODE_ENV=qa npm run test:ui-allure 
 BROWSER=electron npm run test:ui-allure
 
-npm run test:api-allure
+NODE_ENV=qa npm run test:api-allure
 ```
 <br>
 
@@ -51,11 +51,11 @@ npm run test:api-allure
 
 ```bash
 # After run test, create report. Use this command if you need to save the report for future reference or for sharing it with colleagues. With the error image of the failed test case attached to the report
-npm run view:report
+npm run alure:view:report
 # Or use this command if you need to view the report for yourself and do not need to save it.  With the error image of the failed test case attached to the report
-npm run server
+npm run allure:server
 
-# After running a test once, you can use the command npm run allure:history. Then, when you run the tests again, any new or differing results will be added, and trends will appear within the Allure report. This is beneficial because it allows you to view a graph displaying multiple executions, including both failed and successful tests.
+# After running a test once and execute command npm run alure:view:report, you can use the command npm run allure:history. Then, when you run the tests again or other tests, any new or differing results will be added, and trends will appear within the Allure report. This is beneficial because it allows you to view a graph displaying multiple executions.
 npm run allure:history
 
 # Delete allure folders and screenshots
@@ -67,11 +67,11 @@ npm run allure:clear
 
 
 ```bash
-BROWSER=chrome npm run test:ui-mochawesome
-BROWSER=edge npm run test:ui-mochawesome
-BROWSER=firefox npm run test:ui-mochawesome
-BROWSER=webkit  npm run test:ui-mochawesome
-BROWSER=electron npm run test:ui-mochawesome
+BROWSER=chrome NODE_ENV=qa npm run test:ui-mochawesome
+BROWSER=edge NODE_ENV=qa npm run test:ui-mochawesome
+BROWSER=firefox NODE_ENV=qa npm run test:ui-mochawesome
+BROWSER=webkit  NODE_ENV=qa npm run test:ui-mochawesome
+BROWSER=electron NODE_ENV=qa npm run test:ui-mochawesome
 
 npm run test:api-mochawesome
 ```
@@ -108,6 +108,10 @@ npm run mochawesome:generate
   NODE_ENV=dev npm run test:ui-allure
 
   NODE_ENV=dev npm run test:ui-mochawesome
+
+  NODE_ENV=qa npm run test:ui-allure
+
+  NODE_ENV=qa npm run test:ui-mochawesome
 
   NODE_ENV=prod npm run test:ui-allure
   
