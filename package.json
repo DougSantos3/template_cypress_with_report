@@ -25,12 +25,13 @@
     "@shelex/cypress-allure-plugin": "^2.40.2",
     "allure-commandline": "^2.32.0",
     "allure-cypress": "^3.2.0",
-    "browserstack-cypress-cli": "^1.32.4",
+    "browserstack-cypress-cli": "^1.32.5",
     "cross-env": "^7.0.3",
-    "cypress": "13.15.0",
+    "cypress": "14.0.3",
     "cypress-multi-reporters": "^2.0.5",
     "cypress-postgres-10v-compatibility": "^1.0.0",
     "cypress-xpath": "^2.0.1",
+    "dotenv": "^16.4.7",
     "joi": "^17.13.3",
     "mochawesome": "^7.1.3",
     "mochawesome-merge": "^4.4.1",
@@ -38,7 +39,6 @@
     "pg": "^8.13.1",
     "pg-promise": "^11.10.2",
     "playwright-webkit": "^1.50.1",
-    "prettier": "^3.4.2",
-    "dotenv": "^16.4.7"
+    "prettier": "^3.4.2"
   }
 }
