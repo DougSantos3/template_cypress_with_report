@@ -58,7 +58,7 @@ const browserstackConfig = {
     cypress_config_file: './cypress.config.js',
     nodeVersion: '20.16.0',
     npm_dependencies: {
-      cypress: '13.latest',
+      cypress: '14.0.3',
       'browserstack-cypress-cli': '^1.32.4',
     },
     project_name: 'Cypress in ServeRest',
