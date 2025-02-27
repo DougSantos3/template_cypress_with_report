@@ -2,12 +2,9 @@ const { defineConfig } = require('cypress')
 const { allureCypress } = require('allure-cypress/reporter')
 const cyPostgres = require('cypress-postgres-10v-compatibility')
 const os = require('os')
+const browserstackTestObservabilityPlugin = require('browserstack-cypress-cli/bin/testObservability/plugin')
 
 const env = process.env.NODE_ENV || 'qa'
-
-function removeUrlSuffix(text) {
-  return text.replace(/URL=.*/, '')
-}
 
 function getBaseUrls() {
   return {
@@ -29,25 +26,46 @@ function getBaseUrls() {
 const baseUrls = getBaseUrls()
 
 module.exports = defineConfig({
+  experimentalWebKitSupport: true,
   e2e: {
-    pageLoadTimeout: 120000,
-    defaultCommandTimeout: 120000,
     setupNodeEvents(on, config) {
-      const isApiTest = config.baseUrl === baseUrls.api;
-    
-      allureCypress(on, config, {
-        environmentInfo: {
-          os_platform: os.platform(),
-          os_release: os.release(),
-          os_version: os.version(),
-          node_version: process.version,
-          environment: env,
-          browser: isApiTest ? undefined : removeUrlSuffix(config.browser || 'electron'),
-        },
-      });
+      config.env.allureInitialized = false
+      if (allureCypress && !process.env.BROWSERSTACK) {
+        allureCypress(on, config, {
+          environmentInfo: {
+            os_platform: os.platform(),
+            os_release: os.release(),
+            os_version: os.version(),
+            node_version: process.version,
+            environment: env,
+            browser: config.browser,
+          },
+        })
+        config.env.allureInitialized = true
 
-      on('task', {
-        dbQuery: (query) => cyPostgres(query.query, query.connection),
+        on('task', {
+          reportAllureCypressSpecMessages: () => {
+            return null
+          },
+          dbQuery: (query) => cyPostgres(query.query, query.connection),
+        })
+      } else {
+        on('task', {
+          dbQuery: (query) => cyPostgres(query.query, query.connection),
+        })
+      }
+
+      browserstackTestObservabilityPlugin(on, config)
+
+      on('before:run', (details) => {
+        console.log('Running tests with the following details:', details)
+      })
+
+      on('after:run', (results) => {
+        console.log(
+          'Finished running tests with the following results:',
+          results,
+        )
       })
 
       return config

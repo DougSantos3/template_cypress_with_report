@@ -33,25 +33,100 @@ Run tests:
 
 ```bash
 # Open dashboard cypress
-npm run cy:open
+npm run open
+```
 
-# Run tests ui env qa
-npm run test:ui:qa
+<br>
 
-# Run tests api env qa
-npm run test:api:qa
+# Run with Allure
 
+```bash
+# Run tests ui env qa in several browser
+BROWSER=chrome NODE_ENV=qa npm run test:ui-allure NODE_ENV=qa
+BROWSER=edge NODE_ENV=qa npm run test:ui-allure 
+BROWSER=firefox NODE_ENV=qa npm run test:ui-allure 
+BROWSER=webkit NODE_ENV=qa npm run test:ui-allure 
+BROWSER=electron npm run test:ui-allure
+
+NODE_ENV=qa npm run test:api-allure
+```
+<br>
+
+
+# Generate report Allure
+
+```bash
 # After run test, create report. Use this command if you need to save the report for future reference or for sharing it with colleagues. With the error image of the failed test case attached to the report
-npm run view:report
+npm run alure:view:report
 # Or use this command if you need to view the report for yourself and do not need to save it.  With the error image of the failed test case attached to the report
-npm run server
+npm run allure:server
 
-# After running a test once, you can use the command npm run allure:history. Then, when you run the tests again, any new or differing results will be added, and trends will appear within the Allure report. This is beneficial because it allows you to view a graph displaying multiple executions, including both failed and successful tests.
+# After running a test once and execute command npm run alure:view:report, you can use the command npm run allure:history. Then, when you run the tests again or other tests, any new or differing results will be added, and trends will appear within the Allure report. This is beneficial because it allows you to view a graph displaying multiple executions.
 npm run allure:history
 
 # Delete allure folders and screenshots
 npm run allure:clear
 ```
+<br>
+
+<br>
+
+# Run with mochawesome
+
+
+```bash
+BROWSER=chrome NODE_ENV=qa npm run test:ui-mochawesome
+BROWSER=edge NODE_ENV=qa npm run test:ui-mochawesome
+BROWSER=firefox NODE_ENV=qa npm run test:ui-mochawesome
+BROWSER=webkit  NODE_ENV=qa npm run test:ui-mochawesome
+BROWSER=electron NODE_ENV=qa npm run test:ui-mochawesome
+
+npm run test:api-mochawesome
+```
+<br>
+
+# Generate report Mochawesome
+
+```bash
+# After run test, create report. Use this command if you want to merge the json 
+npm run mochawesome:merge
+
+# After with this command you will create the html with all the reports
+npm run mochawesome:generate
+
+```
+
+<br>
+
+# Browserstack
+
+### Before run Browserstack you need execute
+`node generateConfig.js`
+
+### Now you can run BrowserStack
+`browserstack-cypress run`
+
+<br>
+
+# Details
+
+- A mochawesome-report folder will be generated in the project root and you must enter it, look for the merged.html file where the report with the scenarios will be, just double-click on it.
+
+- The system only has one environment where I left qa as default, but if the system has multiple environments, you just need to change the urls in cypress.config.js and call it via:
+
+  NODE_ENV=dev npm run test:ui-allure
+
+  NODE_ENV=dev npm run test:ui-mochawesome
+
+  NODE_ENV=qa npm run test:ui-allure
+
+  NODE_ENV=qa npm run test:ui-mochawesome
+
+  NODE_ENV=prod npm run test:ui-allure
+  
+  NODE_ENV=prod npm run test:ui-mochawesome
+
+
 <br>
 
 ## Tests Overview
