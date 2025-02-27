@@ -29,7 +29,8 @@ module.exports = defineConfig({
   experimentalWebKitSupport: true,
   e2e: {
     setupNodeEvents(on, config) {
-      if (!config.env.allureInitialized) {
+      config.env.allureInitialized = false
+      if (allureCypress && !process.env.BROWSERSTACK) {
         allureCypress(on, config, {
           environmentInfo: {
             os_platform: os.platform(),
@@ -41,13 +42,32 @@ module.exports = defineConfig({
           },
         })
         config.env.allureInitialized = true
+
+        on('task', {
+          reportAllureCypressSpecMessages: () => {
+            return null
+          },
+          dbQuery: (query) => cyPostgres(query.query, query.connection),
+        })
+      } else {
+        on('task', {
+          dbQuery: (query) => cyPostgres(query.query, query.connection),
+        })
       }
 
-      on('task', {
-        dbQuery: (query) => cyPostgres(query.query, query.connection),
+      browserstackTestObservabilityPlugin(on, config)
+
+      on('before:run', (details) => {
+        console.log('Running tests with the following details:', details)
       })
 
-      browserstackTestObservabilityPlugin(on, config)
+      on('after:run', (results) => {
+        console.log(
+          'Finished running tests with the following results:',
+          results,
+        )
+      })
+
       return config
     },
     baseUrl: baseUrls.api,
