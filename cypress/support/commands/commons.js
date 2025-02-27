@@ -150,22 +150,3 @@ Cypress.Commands.add(
     ).then(() => cy.get('@updatedUserId'))
   },
 )
-
-Cypress.Commands.add(
-  'browserstack',
-  { prevSubject: true },
-  (subject, testName, options = {}) => {
-    if (
-      Cypress.browser.name === 'chrome' ||
-      Cypress.browser.name === 'firefox'
-    ) {
-      cy.log('Running on BrowserStack')
-      const browserstackOpts = {
-        ...Cypress.config('browserStack'),
-        name: testName,
-      }
-      return cy.wrap(subject).invoke('browserstack', browserstackOpts)
-    }
-    return cy.wrap(subject)
-  },
-)
