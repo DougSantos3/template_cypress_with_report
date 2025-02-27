@@ -161,6 +161,8 @@ npm run mochawesome:generate
 </p>
 
 
+#### All scenarios are run on an Ubuntu machine
+
 #### After executing the scenarios, the report is generated in pages-build-deployment. It may happen that between one execution and another, GitHub takes some time to process the last execution. Please wait for a while.
 
 <p align="center">
