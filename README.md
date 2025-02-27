@@ -35,6 +35,11 @@ Run tests:
 # Open dashboard cypress
 npm run open
 ```
+
+<br>
+
+# Run with Allure
+
 ```bash
 # Run tests ui env qa in several browser
 BROWSER=chrome NODE_ENV=qa npm run test:ui-allure NODE_ENV=qa
@@ -47,7 +52,8 @@ NODE_ENV=qa npm run test:api-allure
 ```
 <br>
 
-# View location on Allure Report
+
+# Generate report Allure
 
 ```bash
 # After run test, create report. Use this command if you need to save the report for future reference or for sharing it with colleagues. With the error image of the failed test case attached to the report
@@ -65,6 +71,8 @@ npm run allure:clear
 
 <br>
 
+# Run with mochawesome
+
 
 ```bash
 BROWSER=chrome NODE_ENV=qa npm run test:ui-mochawesome
@@ -75,8 +83,9 @@ BROWSER=electron NODE_ENV=qa npm run test:ui-mochawesome
 
 npm run test:api-mochawesome
 ```
+<br>
 
-# View location on Mochawesome Report
+# Generate report Mochawesome
 
 ```bash
 # After run test, create report. Use this command if you want to merge the json 
@@ -116,6 +125,9 @@ npm run mochawesome:generate
   NODE_ENV=prod npm run test:ui-allure
   
   NODE_ENV=prod npm run test:ui-mochawesome
+
+
+<br>
 
 ## Tests Overview
 
