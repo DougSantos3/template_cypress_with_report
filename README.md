@@ -10,6 +10,12 @@
 </div>
 
 <br>
+
+<p align="center">
+  <img alt="Examples" src=".github/template cypress.gif" width="100%">
+</p>
+
+
 <br>
 
 This is a Test QA - project using [`cypress`](https://www.cypress.io/).
@@ -42,7 +48,7 @@ npm run open
 
 ```bash
 # Run tests ui env qa in several browser
-BROWSER=chrome NODE_ENV=qa npm run test:ui-allure NODE_ENV=qa
+BROWSER=chrome NODE_ENV=qa npm run test:ui-allure
 BROWSER=edge NODE_ENV=qa npm run test:ui-allure 
 BROWSER=firefox NODE_ENV=qa npm run test:ui-allure 
 BROWSER=webkit NODE_ENV=qa npm run test:ui-allure 
@@ -160,6 +166,8 @@ npm run mochawesome:generate
   <img alt="run scenarios ui" src=".github/ui.png" width="100%">
 </p>
 
+
+#### All scenarios are run on an Ubuntu machine
 
 #### After executing the scenarios, the report is generated in pages-build-deployment. It may happen that between one execution and another, GitHub takes some time to process the last execution. Please wait for a while.
 
